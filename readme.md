@@ -69,4 +69,15 @@
  - setInstance **
  ## Created
  - selected **
- - 
+ - instance **
+ - gotoPage **
+ - errorMessage **
+ - getData **
+ - setInstance ** 
+ - getChildren **
+ - scrolling **
+ - tagUrl **
+ - tagsUrl **
+ - childComponent **
+ - getTaggedData **
+ - reload
