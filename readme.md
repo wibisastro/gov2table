@@ -28,11 +28,45 @@
 - taggingId: type Number **
 - dynColName: {} **
 - linkOn: {} **
+- components: httpVueLoader **
 
 ## Data
- - isPressed: false
+- gridData: []
+- records:0
+- sortKey: ''
+- sortOrders: sortOrders
+- currentPage: '1'
+- scroll: 1
+- parent: 0
+- taggedData: {}
+- tags: []
  ## Methods
- - toggleClick ** fungsinya mengubah nilai var isPresed ke nilai selain yang sedang terkandung
- - resetButton ** fungsinya mengubah nilai var isPresed ke false
+ - reload **
+ - loadTags **
+ - getTags **
+ - showLink **
+ - columnName **
+ - showTagging **
+ - getTaggedData **
+ - loadTaggedData **
+ - scrolling **
+ - setParent **
+ - setScroll **
+ - paging **
+ - sortBy **
+ - gotoPage **
+ - errorMessage **
+ - loadData **
+ - pagination **
+ - edit **
+ - del **
+ - hasChildren **
+ - sayUrl **
+ - getData **
+ - getTotalRecord **
+ - getChildren **
+ - onGetDataFail **
+ - setInstance **
  ## Created
- - resetButton ** listen event dengan value resetButton, jika ada eksekusi method resetButton di atas
+ - selected **
+ - 
