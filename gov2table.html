@@ -18,7 +18,6 @@
     <section class="hero is-primary">
       <div> </div>
     </section>
-        
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -29,18 +28,18 @@
                 <h1 class="title">Table Component</h1>
                  <span>&nbsp;</span>
                 <div>
-                <div class="field is-horizontal">
-                  <div class="field-body">
-                    <div class="field is-grouped is-grouped-right">
-                         <div class="field has-addons">
-                          <div class="control">
-                            <input class="input" type="text" placeholder="Search..." v-model="searchQuery" @keyup="setQuery">
+                  <div class="field is-horizontal">
+                    <div class="field-body">
+                      <div class="field is-grouped is-grouped-right">
+                           <div class="field has-addons">
+                            <div class="control">
+                              <input class="input" type="text" placeholder="Search..." v-model="searchQuery" @keyup="setQuery">
+                            </div>
                           </div>
-                        </div>
-                     </div>
+                       </div>
+                    </div>
                   </div>
-                </div>
-            </div> 
+                </div> 
             <span>&nbsp;</span>
              <div>
                 <gov2table
@@ -53,16 +52,12 @@
                 </gov2table>
               </div>          
               <span>&nbsp;</span> 
-              <div class="column">
-                 <gov2itemperpage :interval="interval"></gov2itemperpage>  
-             </div>
+              <div class="columns" v-if="isTableActive">
                 <div class="column">
-                  <div class="select" v-if="scrolls>1">
-                    <select v-model="scroll" @change="setScroll()">
-                      <option disabled="disabled">Scrolls</option>
-                      <option v-for="item in scrolls" :value="item">{{ item }}</option>
-                    </select>
-                  </div> 
+                   <gov2itemperpage :interval="interval"></gov2itemperpage>  
+                </div>
+                <div class="column">
+                  <gov2scroll></gov2scroll>
                 </div>
                 <div class="column is-9">
                   <gov2pagination 
@@ -71,7 +66,7 @@
                     :scroll-interval="scrollInterval"
                     :item-per-page="itemPerPage">
                     </gov2pagination>
-                  </div>                          
+                </div> </div>                        
                </div>
             </div>
         </div>
@@ -95,6 +90,7 @@
             'gov2table': httpVueLoader('vue/gov2table.vue'),
             'gov2itemperpage': httpVueLoader('vue/gov2itemperpage.vue'),
             'gov2pagination': httpVueLoader('vue/gov2pagination.vue'),
+            'gov2scroll': httpVueLoader('vue/gov2scroll.vue'),
              },
 
      data () {
@@ -109,8 +105,6 @@
           "searchQuery":"",
           "itemPerPage":6,
           searchQuery:'',
-          scroll:1,
-          scrolls: 0
         }
     },
     methods: {
@@ -130,15 +124,6 @@
         setItemPerPage: function(data) {
           this.itemPerPage=data;
         },
-         setScrolls(data) {
-            this.scrolls=data;
-        },
-        setScroll() {
-            eventBus.$emit('scroll',this.scroll);
-            /*
-            this.setFirstPage(this.scroll*this.scrollInterval-this.scrollInterval+1);
-            */
-        },
     },
     created: function () {
        eventBus.$on("setItemPerPage", this.setItemPerPage);
@@ -146,7 +131,6 @@
        eventBus.$on("pagination", this.pagination);
        eventBus.$on("searchQuery", this.setQuery);
        eventBus.$on("setItemPerPage", this.setItemPerPage);
-       eventBus.$on('setScroll', this.setScrolls);
     },
   });
 </script>
